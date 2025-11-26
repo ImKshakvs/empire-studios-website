@@ -163,12 +163,13 @@
         }
 
         /* Percorso Ruoli */
+        /* Impedisce alla linea verde di continuare oltre il percorso principale */
         .roles-path {
             position: relative;
             max-width: 900px;
             margin: 0 auto;
             padding: 3rem 0;
-            padding-bottom: 0; /* Impedisce alla linea di continuare sotto */
+            overflow: hidden; /* Taglia la linea verde */
         }
 
         .path-connector {

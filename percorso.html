@@ -168,13 +168,14 @@
             max-width: 900px;
             margin: 0 auto;
             padding: 3rem 0;
+            padding-bottom: 0; /* Impedisce alla linea di continuare sotto */
         }
 
         .path-connector {
             position: absolute;
             left: 50%;
             top: 0;
-            bottom: 0;
+            height: calc(100% - 5rem); /* Si ferma prima della fine */
             width: 4px;
             background: var(--primary);
             transform: translateX(-50%);

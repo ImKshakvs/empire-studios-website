@@ -1,0 +1,1244 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Empire Studios - Team Professionale RP Minecraft</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #5cb85c;
+            --primary-dark: #4caf50;
+            --bg-dark: #0a0a0a;
+            --bg-medium: #1a1a1a;
+            --bg-light: #2a2a2a;
+            --text-white: #ffffff;
+            --text-gray: #e0e0e0;
+            --text-muted: #7f8c8d;
+            --cyan: #00FFFF;
+            --blue-light: #87CEEB;
+            --blue: #ADD8E6;
+            --gold: #FFD700;
+            --green-light: #90EE90;
+            --orange: #FFA500;
+            --red: #FF0000;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Arial', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-gray);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* ==================== NAVBAR ==================== */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 10, 10, 0.98);
+            backdrop-filter: blur(15px);
+            padding: 1.2rem 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 9999;
+            border-bottom: 2px solid var(--primary);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .logo {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: transform 0.3s;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .logo-icon {
+            font-size: 2rem;
+            filter: drop-shadow(0 0 10px rgba(92, 184, 92, 0.6));
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-gray);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s;
+            position: relative;
+            padding: 8px 0;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 3px;
+            background: var(--primary);
+            transition: width 0.3s;
+            border-radius: 2px;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* ==================== HERO ==================== */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 8rem 5% 4rem;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0a0a0a 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(92, 184, 92, 0.1) 0%, transparent 70%);
+            top: -150px;
+            right: -150px;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(92, 184, 92, 0.08) 0%, transparent 70%);
+            bottom: -100px;
+            left: -100px;
+            animation: float 10s ease-in-out infinite reverse;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(30px, 30px); }
+        }
+
+        .hero-content {
+            max-width: 900px;
+            z-index: 10;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 900;
+            color: var(--text-white);
+            margin-bottom: 1rem;
+            text-shadow: 0 0 20px rgba(92, 184, 92, 0.3);
+            letter-spacing: -1px;
+        }
+
+        .hero .subtitle {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            margin-bottom: 2.5rem;
+            color: var(--text-muted);
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.05rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(92, 184, 92, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(92, 184, 92, 0.5);
+        }
+
+        /* ==================== SECTIONS ==================== */
+        section {
+            padding: 5rem 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--text-white);
+            text-align: center;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            margin-bottom: 3rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: var(--primary);
+            margin: 1rem auto 0;
+            border-radius: 2px;
+        }
+
+        /* ==================== CARDS ==================== */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .card {
+            background: var(--bg-medium);
+            border: 2px solid var(--bg-light);
+            border-radius: 15px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            border-color: var(--primary);
+            box-shadow: 0 15px 40px rgba(92, 184, 92, 0.2);
+        }
+
+        .card-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .card h3 {
+            color: var(--primary);
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 0.8rem;
+        }
+
+        .card p {
+            color: var(--text-gray);
+            line-height: 1.7;
+        }
+
+        /* ==================== FEATURES ==================== */
+        .features-list {
+            display: grid;
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .feature-item {
+            background: var(--bg-medium);
+            border-left: 4px solid var(--primary);
+            border-radius: 10px;
+            padding: 1.5rem;
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 1.5rem;
+            align-items: start;
+            transition: all 0.3s;
+        }
+
+        .feature-item:hover {
+            transform: translateX(8px);
+            background: var(--bg-light);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+        }
+
+        .feature-content h3 {
+            color: var(--text-white);
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .feature-content p {
+            color: var(--text-gray);
+            line-height: 1.6;
+        }
+
+        /* ==================== PERCORSO RUOLI ==================== */
+        .intro-percorso {
+            background: var(--bg-medium);
+            border: 2px solid var(--primary);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 4rem;
+            text-align: center;
+        }
+
+        .intro-percorso h3 {
+            color: var(--primary);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .intro-percorso p {
+            color: var(--text-gray);
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+
+        .roles-path {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 3rem 0;
+        }
+
+        .path-connector {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(180deg, 
+                var(--cyan) 0%, 
+                var(--cyan) 20%,
+                var(--blue-light) 20%,
+                var(--blue-light) 40%,
+                var(--blue) 40%,
+                var(--blue) 60%,
+                var(--gold) 60%,
+                var(--gold) 80%,
+                var(--green-light) 80%,
+                var(--green-light) 100%
+            );
+            transform: translateX(-50%);
+            z-index: 1;
+        }
+
+        .role-item {
+            position: relative;
+            margin-bottom: 3rem;
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .role-item:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .role-number {
+            min-width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: white;
+            box-shadow: 0 4px 15px rgba(92, 184, 92, 0.4);
+            z-index: 10;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .role-card {
+            flex: 1;
+            background: var(--bg-medium);
+            border-radius: 15px;
+            padding: 1.8rem;
+            border: 3px solid;
+            transition: all 0.3s ease;
+            max-width: 400px;
+        }
+
+        .role-item:nth-child(odd) .role-card {
+            margin-right: auto;
+            margin-left: 0;
+        }
+
+        .role-item:nth-child(even) .role-card {
+            margin-left: auto;
+            margin-right: 0;
+        }
+
+        .role-card:hover {
+            transform: scale(1.03);
+            box-shadow: 0 15px 40px rgba(92, 184, 92, 0.25);
+        }
+
+        .role-card.stagista { border-color: var(--cyan); }
+        .role-card.trial { border-color: var(--blue-light); }
+        .role-card.collaboratore { border-color: var(--blue); }
+        .role-card.regista { border-color: var(--gold); }
+        .role-card.empire { border-color: var(--green-light); }
+
+        .role-header {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .role-badge {
+            font-size: 2rem;
+        }
+
+        .role-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+
+        .role-card.stagista .role-title { color: var(--cyan); }
+        .role-card.trial .role-title { color: var(--blue-light); }
+        .role-card.collaboratore .role-title { color: var(--blue); }
+        .role-card.regista .role-title { color: var(--gold); }
+        .role-card.empire .role-title { color: var(--green-light); }
+
+        .role-duration {
+            display: inline-block;
+            background: rgba(92, 184, 92, 0.15);
+            color: var(--primary);
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+        }
+
+        .role-description {
+            color: var(--text-gray);
+            line-height: 1.6;
+            margin-bottom: 0.8rem;
+            font-size: 0.95rem;
+        }
+
+        .role-requirements {
+            background: var(--bg-dark);
+            border-radius: 8px;
+            padding: 0.8rem;
+            margin-top: 0.8rem;
+        }
+
+        .role-requirements h4 {
+            color: var(--primary);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .role-requirements ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .role-requirements li {
+            color: var(--text-gray);
+            padding: 0.2rem 0;
+            font-size: 0.9rem;
+        }
+
+        .role-requirements li::before {
+            content: '✓ ';
+            color: var(--primary);
+            font-weight: bold;
+            margin-right: 0.4rem;
+        }
+
+        /* Ruoli Speciali */
+        .special-roles-divider {
+            text-align: center;
+            margin: 4rem 0 3rem;
+            position: relative;
+        }
+
+        .special-roles-divider::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 50%;
+            height: 2px;
+            background: var(--bg-light);
+        }
+
+        .special-roles-divider span {
+            background: var(--bg-dark);
+            padding: 0 2rem;
+            color: var(--primary);
+            font-weight: 700;
+            font-size: 1.2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .special-roles {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .special-role-card {
+            background: var(--bg-medium);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            border: 3px solid;
+            transition: all 0.3s ease;
+        }
+
+        .special-role-card.coowner { border-color: var(--orange); }
+        .special-role-card.owner { border-color: var(--red); }
+
+        .special-role-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(255, 100, 0, 0.3);
+        }
+
+        .special-role-badge {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .special-role-title {
+            font-size: 1.6rem;
+            font-weight: 800;
+            margin-bottom: 0.8rem;
+        }
+
+        .special-role-card.coowner .special-role-title { color: var(--orange); }
+        .special-role-card.owner .special-role-title { color: var(--red); }
+
+        .special-role-description {
+            color: var(--text-gray);
+            line-height: 1.6;
+        }
+
+        /* ==================== COME INIZIARE ==================== */
+        .steps-container {
+            max-width: 900px;
+            margin: 3rem auto 0;
+        }
+
+        .step {
+            background: var(--bg-medium);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-left: 4px solid var(--primary);
+            transition: all 0.3s ease;
+        }
+
+        .step:hover {
+            transform: translateX(8px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        .step-header {
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .step-number-badge {
+            min-width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: white;
+            flex-shrink: 0;
+            box-shadow: 0 4px 12px rgba(92, 184, 92, 0.3);
+        }
+
+        .step-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--text-white);
+        }
+
+        .step-description {
+            color: var(--text-gray);
+            line-height: 1.7;
+            margin-bottom: 1.2rem;
+            padding-left: 57px;
+        }
+
+        .sub-steps {
+            background: var(--bg-dark);
+            border-radius: 10px;
+            padding: 1.2rem;
+            margin-left: 57px;
+        }
+
+        .sub-steps ol {
+            padding-left: 1.5rem;
+            margin: 0;
+        }
+
+        .sub-steps li {
+            color: var(--text-gray);
+            margin-bottom: 0.8rem;
+            line-height: 1.6;
+        }
+
+        .sub-steps li strong {
+            color: var(--primary);
+        }
+
+        .sub-steps a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.3s;
+        }
+
+        .sub-steps a:hover {
+            border-bottom-color: var(--primary);
+        }
+
+        .step-action {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 0.8rem 1.8rem;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 700;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(92, 184, 92, 0.3);
+            margin-left: 57px;
+            margin-top: 1rem;
+        }
+
+        .step-action:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(92, 184, 92, 0.4);
+        }
+
+        /* ==================== REGOLE ==================== */
+        .rules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .rule-card {
+            background: var(--bg-medium);
+            border-radius: 15px;
+            padding: 2rem;
+            border: 2px solid var(--bg-light);
+            transition: all 0.3s ease;
+        }
+
+        .rule-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--primary);
+            box-shadow: 0 12px 35px rgba(92, 184, 92, 0.2);
+        }
+
+        .rule-icon {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .rule-card h3 {
+            color: var(--primary);
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 0.8rem;
+        }
+
+        .rule-card p {
+            color: var(--text-gray);
+            line-height: 1.6;
+        }
+
+        /* ==================== FOOTER ==================== */
+        footer {
+            background: var(--bg-medium);
+            text-align: center;
+            padding: 2.5rem 5%;
+            border-top: 3px solid var(--primary);
+            margin-top: 5rem;
+        }
+
+        footer p {
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
+        }
+
+        footer strong {
+            color: var(--primary);
+        }
+
+        /* ==================== RESPONSIVE ==================== */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1.2rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .role-item {
+                flex-direction: column !important;
+            }
+
+            .role-item:nth-child(odd) .role-card,
+            .role-item:nth-child(even) .role-card {
+                margin: 0 auto;
+                margin-top: 70px;
+            }
+
+            .path-connector {
+                left: 30px;
+            }
+
+            .role-number {
+                left: 30px;
+                transform: translateX(0);
+            }
+
+            .step-description,
+            .sub-steps,
+            .step-action {
+                margin-left: 0;
+                padding-left: 0;
+            }
+
+            section {
+                padding: 3rem 4%;
+            }
+        }
+
+        /* ==================== SMOOTH SCROLL ==================== */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ==================== NAVBAR ==================== -->
+    <nav class="navbar">
+        <a href="#home" class="logo">
+            <span>🏢</span>
+            <span>Empire Studios</span>
+        </a>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#team">Il Team</a></li>
+            <li><a href="#app">BadgeEmpire</a></li>
+            <li><a href="#ruoli">Percorso</a></li>
+            <li><a href="#iniziare">Inizia</a></li>
+            <li><a href="#regole">Regole</a></li>
+        </ul>
+    </nav>
+
+    <!-- ==================== HERO ==================== -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>🎬 Empire Studios</h1>
+            <p class="subtitle">Creatori di Serie RP su Minecraft</p>
+            <p>Un team professionale dedicato alla creazione di contenuti di alta qualità. Unisciti a noi per dar vita a storie straordinarie che emozionano migliaia di spettatori!</p>
+            <a href="#iniziare" class="cta-button">Unisciti al Team →</a>
+        </div>
+    </section>
+
+    <!-- ==================== CHI SIAMO ==================== -->
+    <section id="team">
+        <h2 class="section-title">🌟 Chi Siamo</h2>
+        <p class="section-subtitle">
+            Empire Studios è un team di creatori appassionati che producono serie RP su Minecraft di livello professionale, con focus su storytelling, doppiaggio e regia cinematografica.
+        </p>
+
+        <div class="cards-grid">
+            <div class="card">
+                <span class="card-icon">🎯</span>
+                <h3>La Nostra Missione</h3>
+                <p>Creare contenuti originali e coinvolgenti che intrattengano e ispirino la community di Minecraft, elevando lo standard delle serie RP.</p>
+            </div>
+
+            <div class="card">
+                <span class="card-icon">💎</span>
+                <h3>Qualità Premium</h3>
+                <p>Ogni progetto è curato nei minimi dettagli: dalla scrittura al doppiaggio professionale, dalla regia cinematografica al montaggio avanzato.</p>
+            </div>
+
+            <div class="card">
+                <span class="card-icon">🤝</span>
+                <h3>Team Collaborativo</h3>
+                <p>Lavoriamo in sinergia con rispetto e professionalità, valorizzando il talento unico di ogni membro del team.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== APP BADGEEMPIRE ==================== -->
+    <section id="app">
+        <h2 class="section-title">📱 BadgeEmpire App</h2>
+        <p class="section-subtitle">
+            La nostra applicazione ufficiale e professionale per gestire tutte le attività del team in modo organizzato ed efficiente.
+        </p>
+
+        <div class="features-list">
+            <div class="feature-item">
+                <span class="feature-icon">⏰</span>
+                <div class="feature-content">
+                    <h3>Gestione Ore Lavoro</h3>
+                    <p>Traccia facilmente le tue ore di lavoro quotidiane. Visualizza statistiche mensili, cronologia dettagliata e analisi delle tue prestazioni nel tempo.</p>
+                </div>
+            </div>
+
+            <div class="feature-item">
+                <span class="feature-icon">🎭</span>
+                <div class="feature-content">
+                    <h3>Bacheca Personaggi</h3>
+                    <p>Accedi ai personaggi che ti vengono assegnati, scarica copioni in formato Word, audio di riferimento, e carica i tuoi doppiaggi completati.</p>
+                </div>
+            </div>
+
+            <div class="feature-item">
+                <span class="feature-icon">📅</span>
+                <div class="feature-content">
+                    <h3>Calendario Eventi</h3>
+                    <p>Calendario sincronizzato con eventi comuni del team, note personali, scadenze progetti, riunioni obbligatorie e sessioni di doppiaggio programmate.</p>
+                </div>
+            </div>
+
+            <div class="feature-item">
+                <span class="feature-icon">🎙️</span>
+                <div class="feature-content">
+                    <h3>Prenotazioni Doppiaggio</h3>
+                    <p>Sistema intelligente per prenotare sessioni di doppiaggio, visualizzare disponibilità degli studi e coordinare le registrazioni con il team.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== PERCORSO RUOLI ==================== -->
+    <section id="ruoli">
+        <h2 class="section-title">🎖️ Il Percorso di Crescita</h2>
+        <p class="section-subtitle">
+            Ogni membro segue un percorso di crescita professionale strutturato, con ruoli progressivi basati su competenze, impegno e risultati.
+        </p>
+
+        <div class="intro-percorso">
+            <h3>📈 Un Percorso Strutturato</h3>
+            <p>Dal tuo primo giorno come Stagista fino a diventare parte dell'Empire Team, ogni passaggio rappresenta una crescita nelle tue competenze e responsabilità. Impara, migliora e sali di livello!</p>
+        </div>
+
+        <div class="roles-path">
+            <div class="path-connector"></div>
+
+            <!-- Livello 1: Stagista -->
+            <div class="role-item">
+                <div class="role-number">1</div>
+                <div class="role-card stagista">
+                    <div class="role-header">
+                        <span class="role-badge">🌱</span>
+                        <h3 class="role-title">Stagista</h3>
+                    </div>
+                    <span class="role-duration">⏱️ Durata: 1-2 settimane</span>
+                    <p class="role-description">Il tuo punto di partenza! Imparerai le basi del doppiaggio, le tecniche di registrazione e le dinamiche del team.</p>
+                    <div class="role-requirements">
+                        <h4>Requisiti:</h4>
+                        <ul>
+                            <li>Completare il tutorial iniziale</li>
+                            <li>Partecipare alle riunioni di team</li>
+                            <li>Registrare almeno 3 doppiaggi di prova</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Livello 2: Trial -->
+            <div class="role-item">
+                <div class="role-number">2</div>
+                <div class="role-card trial">
+                    <div class="role-header">
+                        <span class="role-badge">🔍</span>
+                        <h3 class="role-title">Trial</h3>
+                    </div>
+                    <span class="role-duration">⏱️ Durata: 2-3 settimane</span>
+                    <p class="role-description">Fase di valutazione in cui dimostri le tue capacità. Lavori su personaggi secondari e sviluppi il tuo stile.</p>
+                    <div class="role-requirements">
+                        <h4>Requisiti per avanzare:</h4>
+                        <ul>
+                            <li>Completare 10+ doppiaggi di qualità</li>
+                            <li>Rispettare tutte le scadenze</li>
+                            <li>Ricevere valutazione positiva</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Livello 3: Collaboratore -->
+            <div class="role-item">
+                <div class="role-number">3</div>
+                <div class="role-card collaboratore">
+                    <div class="role-header">
+                        <span class="role-badge">⭐</span>
+                        <h3 class="role-title">Collaboratore</h3>
+                    </div>
+                    <span class="role-duration">⏱️ Durata: Indeterminata</span>
+                    <p class="role-description">Membro ufficiale del team! Accesso a personaggi principali, progetti importanti e maggiori responsabilità.</p>
+                    <div class="role-requirements">
+                        <h4>Benefici:</h4>
+                        <ul>
+                            <li>Personaggi protagonisti</li>
+                            <li>Accesso completo all'app</li>
+                            <li>Voto nelle decisioni di team</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Livello 4: Regista -->
+            <div class="role-item">
+                <div class="role-number">4</div>
+                <div class="role-card regista">
+                    <div class="role-header">
+                        <span class="role-badge">🎬</span>
+                        <h3 class="role-title">Regista</h3>
+                    </div>
+                    <span class="role-duration">⏱️ Per merito eccezionale</span>
+                    <p class="role-description">Leader creativo con esperienza comprovata. Coordini progetti, dirigi doppiatori e supervisioni la qualità.</p>
+                    <div class="role-requirements">
+                        <h4>Responsabilità:</h4>
+                        <ul>
+                            <li>Supervisione progetti</li>
+                            <li>Direzione artistica</li>
+                            <li>Formazione nuovi membri</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Livello 5: Empire Team -->
+            <div class="role-item">
+                <div class="role-number">5</div>
+                <div class="role-card empire">
+                    <div class="role-header">
+                        <span class="role-badge">👑</span>
+                        <h3 class="role-title">Empire Team</h3>
+                    </div>
+                    <span class="role-duration">⏱️ Vertice del percorso</span>
+                    <p class="role-description">L'élite di Empire Studios. Membri storici con contributi eccezionali e dedizione assoluta al progetto.</p>
+                    <div class="role-requirements">
+                        <h4>Privilegi:</h4>
+                        <ul>
+                            <li>Decisioni strategiche</li>
+                            <li>Progetti esclusivi</li>
+                            <li>Massima autonomia creativa</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ruoli Speciali -->
+        <div class="special-roles-divider">
+            <span>Ruoli di Leadership</span>
+        </div>
+
+        <div class="special-roles">
+            <div class="special-role-card coowner">
+                <span class="special-role-badge">🔥</span>
+                <h3 class="special-role-title">Co-Owner</h3>
+                <p class="special-role-description">Gestione operativa, coordinamento team e sviluppo strategico. Ruolo assegnato per fiducia e competenza comprovata.</p>
+            </div>
+
+            <div class="special-role-card owner">
+                <span class="special-role-badge">💎</span>
+                <h3 class="special-role-title">Owner</h3>
+                <p class="special-role-description">Fondatore e visionario di Empire Studios. Guida la direzione creativa e le decisioni strategiche del team.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== COME INIZIARE ==================== -->
+    <section id="iniziare">
+        <h2 class="section-title">🚀 Come Iniziare</h2>
+        <p class="section-subtitle">
+            Segui questi passaggi per unirti al team Empire Studios e iniziare la tua avventura!
+        </p>
+
+        <div class="steps-container">
+            <!-- Step 1: Tailscale -->
+            <div class="step">
+                <div class="step-header">
+                    <div class="step-number-badge">1</div>
+                    <h3 class="step-title">Installa Tailscale VPN</h3>
+                </div>
+                <p class="step-description">
+                    Tailscale è la nostra rete privata virtuale che ti permette di accedere in modo sicuro a tutte le risorse del team.
+                </p>
+                <div class="sub-steps">
+                    <ol>
+                        <li><strong>Scarica Tailscale</strong> dal sito ufficiale per il tuo sistema operativo</li>
+                        <li><strong>Installa l'applicazione</strong> seguendo le istruzioni del programma di installazione</li>
+                        <li><strong>Esegui l'accesso</strong> a Tailscale con il tuo account Google o email</li>
+                        <li><strong>Accetta l'invito</strong> cliccando su <a href="https://login.tailscale.com/admin/invite/QVuvNyuEqTitMJQDLh2Q11" target="_blank">questo link di invito</a></li>
+                        <li><strong>Compila il questionario</strong> di Tailscale che appare</li>
+                        <li><strong>Salta l'introduzione</strong> cliccando su "Skip This Introduction" in basso al centro della seconda pagina</li>
+                        <li><strong>Riapri il link di invito</strong> e premi su "Connect" per completare la connessione</li>
+                    </ol>
+                </div>
+                <a href="https://tailscale.com/download" target="_blank" class="step-action">
+                    <span>⬇️</span>
+                    <span>Scarica Tailscale</span>
+                </a>
+            </div>
+
+            <!-- Step 2: BadgeEmpire App -->
+            <div class="step">
+                <div class="step-header">
+                    <div class="step-number-badge">2</div>
+                    <h3 class="step-title">Scarica BadgeEmpire</h3>
+                </div>
+                <p class="step-description">
+                    BadgeEmpire è l'applicazione ufficiale del team dove gestirai tutte le tue attività, doppiaggi, ore di lavoro e molto altro.
+                </p>
+                <div class="sub-steps">
+                    <ol>
+                        <li><strong>Scarica l'applicazione</strong> dal link MediaFire qui sotto</li>
+                        <li><strong>Esegui il file</strong> BadgeEmpire.exe (Windows Defender potrebbe mostrare un avviso - è normale, l'app è sicura)</li>
+                        <li><strong>Installa l'applicazione</strong> seguendo la procedura guidata</li>
+                    </ol>
+                </div>
+                <a href="https://www.mediafire.com/file/bo6x9uleoy1wgyk/BadgeEmpire.exe/file" target="_blank" class="step-action">
+                    <span>📱</span>
+                    <span>Scarica BadgeEmpire</span>
+                </a>
+            </div>
+
+            <!-- Step 3: Registrazione -->
+            <div class="step">
+                <div class="step-header">
+                    <div class="step-number-badge">3</div>
+                    <h3 class="step-title">Registrati e Accedi</h3>
+                </div>
+                <p class="step-description">
+                    Crea il tuo account BadgeEmpire per accedere a tutte le funzionalità riservate ai membri del team.
+                </p>
+                <div class="sub-steps">
+                    <ol>
+                        <li><strong>Apri l'applicazione</strong> BadgeEmpire installata</li>
+                        <li><strong>Clicca su "Registrati"</strong> per creare un nuovo account</li>
+                        <li><strong>Inserisci i tuoi dati</strong>:
+                            <ul style="list-style: disc; margin-left: 1.5rem; margin-top: 0.5rem;">
+                                <li>Nome completo</li>
+                                <li>Email valida</li>
+                                <li>Username unico</li>
+                                <li>Password sicura</li>
+                            </ul>
+                        </li>
+                        <li><strong>Conferma la registrazione</strong> tramite l'email che riceverai</li>
+                        <li><strong>Effettua il login</strong> con le credenziali appena create</li>
+                    </ol>
+                </div>
+            </div>
+
+            <!-- Step 4: Tutorial -->
+            <div class="step">
+                <div class="step-header">
+                    <div class="step-number-badge">4</div>
+                    <h3 class="step-title">Completa il Tutorial</h3>
+                </div>
+                <p class="step-description">
+                    Il tutorial interattivo ti guiderà attraverso tutte le funzionalità dell'app e le procedure del team. È obbligatorio per iniziare!
+                </p>
+                <div class="sub-steps">
+                    <ol>
+                        <li><strong>Avvia il tutorial</strong> che partirà automaticamente al primo accesso</li>
+                        <li><strong>Esplora le sezioni</strong>:
+                            <ul style="list-style: disc; margin-left: 1.5rem; margin-top: 0.5rem;">
+                                <li>Gestione ore di lavoro</li>
+                                <li>Bacheca personaggi</li>
+                                <li>Calendario eventi</li>
+                                <li>Prenotazioni doppiaggio</li>
+                                <li>Chat e notifiche</li>
+                            </ul>
+                        </li>
+                        <li><strong>Completa i mini-task</strong> per familiarizzare con l'interfaccia</li>
+                        <li><strong>Supera il quiz finale</strong> per ottenere la certificazione Stagista</li>
+                    </ol>
+                </div>
+            </div>
+
+            <!-- Step 5: Benvenuto -->
+            <div class="step">
+                <div class="step-header">
+                    <div class="step-number-badge">5</div>
+                    <h3 class="step-title">Benvenuto nel Team! 🎉</h3>
+                </div>
+                <p class="step-description">
+                    Congratulazioni! Ora sei ufficialmente un membro Stagista di Empire Studios. Inizia a esplorare l'app, presenta te stesso nel canale Discord, e preparati per la tua prima sessione di doppiaggio!
+                </p>
+                <div class="sub-steps">
+                    <h4 style="color: var(--primary); margin-bottom: 0.8rem;">I tuoi primi passi:</h4>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="margin-bottom: 0.6rem;">✓ Completa il tuo profilo nell'app</li>
+                        <li style="margin-bottom: 0.6rem;">✓ Presentati nel canale #benvenuti su Discord</li>
+                        <li style="margin-bottom: 0.6rem;">✓ Controlla il calendario per le prossime riunioni</li>
+                        <li style="margin-bottom: 0.6rem;">✓ Leggi le regole del team qui sotto</li>
+                        <li style="margin-bottom: 0.6rem;">✓ Attendi l'assegnazione del tuo primo personaggio</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== REGOLE ==================== -->
+    <section id="regole">
+        <h2 class="section-title">📋 Regole del Team</h2>
+        <p class="section-subtitle">
+            Per garantire un ambiente professionale e collaborativo, tutti i membri devono rispettare queste regole fondamentali.
+        </p>
+
+        <div class="rules-grid">
+            <div class="rule-card">
+                <span class="rule-icon">🤝</span>
+                <h3>Rispetto Reciproco</h3>
+                <p>Tratta tutti i membri con <strong>rispetto e professionalità</strong>. Nessuna forma di discriminazione, insulti o comportamenti tossici sarà tollerata.</p>
+            </div>
+
+            <div class="rule-card">
+                <span class="rule-icon">⏰</span>
+                <h3>Puntualità</h3>
+                <p>Rispetta le <strong>scadenze dei progetti</strong> e sii puntuale alle riunioni. In caso di imprevisti, avvisa con anticipo i responsabili.</p>
+            </div>
+
+            <div class="rule-card">
+                <span class="rule-icon">💎</span>
+                <h3>Qualità del Lavoro</h3>
+                <p>Consegna sempre lavori di <strong>alta qualità</strong>. Registrazioni pulite, senza rumori di fondo, con la giusta interpretazione del personaggio.</p>
+            </div>
+
+            <div class="rule-card">
+                <span class="rule-icon">🔒</span>
+                <h3>Riservatezza</h3>
+                <p><strong>Non condividere</strong> contenuti, copioni o informazioni interne al di fuori del team. Tutto il materiale è strettamente confidenziale.</p>
+            </div>
+
+            <div class="rule-card">
+                <span class="rule-icon">📢</span>
+                <h3>Comunicazione</h3>
+                <p>Mantieni una <strong>comunicazione attiva</strong>. Rispondi ai messaggi importanti, partecipa alle discussioni e tieniti aggiornato sulle novità.</p>
+            </div>
+
+            <div class="rule-card">
+                <span class="rule-icon">🎯</span>
+                <h3>Impegno</h3>
+                <p>Dimostra <strong>dedizione costante</strong>. Se non puoi più contribuire attivamente, comunicalo in modo trasparente per permettere una riorganizzazione.</p>
+            </div>
+
+            <div class="rule-card">
+                <span class="rule-icon">🚫</span>
+                <h3>Plagio e Copyright</h3>
+                <p><strong>Mai copiare</strong> contenuti altrui. Tutto il materiale deve essere originale o utilizzato con le dovute autorizzazioni.</p>
+            </div>
+
+            <div class="rule-card">
+                <span class="rule-icon">⚖️</span>
+                <h3>Conseguenze</h3>
+                <p>La violazione delle regole può portare a <strong>warning, retrocessioni o rimozione</strong> dal team, a seconda della gravità dell'infrazione.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer>
+        <p><strong>Empire Studios</strong> © 2024 - Tutti i diritti riservati</p>
+        <p>Team Professionale di Serie RP Minecraft</p>
+        <p style="margin-top: 1rem; font-size: 0.9rem;">
+            Per informazioni e supporto, contattaci su Discord o tramite BadgeEmpire App
+        </p>
+    </footer>
+
+</body>
+</html>

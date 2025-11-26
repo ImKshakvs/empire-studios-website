@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Empire Studios - Come Iniziare</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #5cb85c;
+            --primary-dark: #4caf50;
+            --bg-dark: #0a0a0a;
+            --bg-medium: #1a1a1a;
+            --bg-light: #2a2a2a;
+            --text-white: #ffffff;
+            --text-gray: #e0e0e0;
+            --text-muted: #7f8c8d;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Arial', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-gray);
+            line-height: 1.6;
+        }
+
+        /* ==================== NAVBAR ==================== */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 9999;
+            border-bottom: 2px solid var(--primary);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            transition: transform 0.3s;
+        }
+
+        .logo-container:hover {
+            transform: scale(1.05);
+        }
+
+        .logo-img {
+            width: 45px;
+            height: 45px;
+            object-fit: contain;
+            filter: drop-shadow(0 0 10px rgba(92, 184, 92, 0.4));
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 0;
+            list-style: none;
+            background: rgba(42, 42, 42, 0.3);
+            border-radius: 50px;
+            padding: 0.5rem;
+        }
+
+        .nav-links a {
+            color: var(--text-gray);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            padding: 0.7rem 1.5rem;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            display: block;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            box-shadow: 0 4px 15px rgba(92, 184, 92, 0.3);
+        }
+
+        /* ==================== CONTENUTO ==================== */
+        .page-content {
+            padding: 8rem 5% 4rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .page-title {
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--text-white);
+            margin-bottom: 1rem;
+        }
+
+        .page-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        .section-divider {
+            width: 60px;
+            height: 4px;
+            background: var(--primary);
+            margin: 1.5rem auto;
+            border-radius: 2px;
+        }
+
+        /* Steps Container */
+        .steps-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .step {
+            background: var(--bg-medium);
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin-bottom: 2.5rem;
+            border-left: 5px solid var(--primary);
+            transition: all 0.3s ease;
+        }
+
+        .step:hover {
+            transform: translateX(10px);
+            box-shadow: 0 15px 40px rgba(92, 184, 92, 0.2);
+        }
+
+        .step-header {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .step-number-badge {
+            min-width: 55px;
+            height: 55px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: white;
+            flex-shrink: 0;
+            box-shadow: 0 5px 15px rgba(92, 184, 92, 0.4);
+        }
+
+        .step-title {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--text-white);
+        }
+
+        .step-description {
+            color: var(--text-gray);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+        }
+
+        .sub-steps {
+            background: var(--bg-dark);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-top: 1.2rem;
+        }
+
+        .sub-steps h4 {
+            color: var(--primary);
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .sub-steps ol {
+            padding-left: 1.5rem;
+            margin: 0;
+        }
+
+        .sub-steps li {
+            color: var(--text-gray);
+            margin-bottom: 0.8rem;
+            line-height: 1.7;
+        }
+
+        .sub-steps li strong {
+            color: var(--primary);
+        }
+
+        .sub-steps a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.3s;
+        }
+
+        .sub-steps a:hover {
+            border-bottom-color: var(--primary);
+        }
+
+        .sub-steps ul {
+            list-style: disc;
+            margin-left: 1.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .step-action {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.7rem;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 700;
+            transition: all 0.3s;
+            box-shadow: 0 5px 20px rgba(92, 184, 92, 0.3);
+            margin-top: 1.5rem;
+        }
+
+        .step-action:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(92, 184, 92, 0.5);
+        }
+
+        /* Success Box */
+        .success-box {
+            background: linear-gradient(135deg, rgba(92, 184, 92, 0.1), rgba(76, 175, 80, 0.1));
+            border: 2px solid var(--primary);
+            border-radius: 20px;
+            padding: 2.5rem;
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .success-box h3 {
+            color: var(--primary);
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            font-weight: 800;
+        }
+
+        .success-box p {
+            color: var(--text-gray);
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .next-steps-list {
+            background: var(--bg-dark);
+            border-radius: 15px;
+            padding: 1.5rem;
+            text-align: left;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .next-steps-list h4 {
+            color: var(--primary);
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .next-steps-list ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .next-steps-list li {
+            color: var(--text-gray);
+            padding: 0.6rem 0;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .next-steps-list li::before {
+            content: '✓ ';
+            color: var(--primary);
+            font-weight: bold;
+            margin-right: 0.8rem;
+            font-size: 1.2rem;
+        }
+
+        /* ==================== RESPONSIVE ==================== */
+        @media (max-width: 768px) {
+            .page-title {
+                font-size: 2.2rem;
+            }
+
+            .step-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .step {
+                padding: 1.8rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ==================== NAVBAR ==================== -->
+    <nav class="navbar">
+        <a href="index.html" class="logo-container">
+            <img src="logo.png" alt="Empire Studios Logo" class="logo-img">
+            <span class="logo-text">Empire Studios</span>
+        </a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="team.html">Il Team</a></li>
+            <li><a href="app.html">BadgeEmpire</a></li>
+            <li><a href="percorso.html">Percorso</a></li>
+            <li><a href="iniziare.html" class="active">Inizia</a></li>
+            <li><a href="regole.html">Regole</a></li>
+        </ul>
+    </nav>
+
+    <!-- ==================== CONTENUTO ==================== -->
+    <div class="page-content">
+        <div class="page-header">
+            <h1 class="page-title">🚀 Come Iniziare</h1>
+            <div class="section-divider"></div>
+            <p class="page-subtitle">
+                Segui questi passaggi per unirti al team Empire Studios e iniziare la tua avventura!
+            </p>
+        </div>
+
+        <div class="steps-container">
+            <!-- Step 1: Tailscale -->
+            <div class="step">
+                <div class="step-header">
+                    <div class="step-number-badge">1</div>
+                    <h3 class="step-title">Installa Tailscale VPN</h3>
+                </div>
+                <p class="step-description">
+                    Tailscale è la nostra rete privata virtuale che ti permette di accedere in modo sicuro a tutte le risorse del team.
+                </p>
+                <div class="sub-steps">
+                    <ol>
+                        <li><strong>Scarica Tailscale</strong> dal sito ufficiale per il tuo sistema operativo</li>
+                        <li><strong>Installa l'applicazione</strong> seguendo le istruzioni del programma di installazione</li>
+                        <li><strong>Esegui l'accesso</strong> a Tailscale con il tuo account Google o email</li>
+                        <li><strong>Accetta l'invito</strong> cliccando su <a href="https://login.tailscale.com/admin/invite/QVuvNyuEqTitMJQDLh2Q11" target="_blank">questo link di invito</a></li>
+                        <li><strong>Compila il questionario</strong> di Tailscale che appare</li>
+                        <li><strong>Salta l'introduzione</strong> cliccando su "Skip This Introduction" in basso al centro della seconda pagina</li>
+                        <li><strong>Riapri il link di invito</strong> e premi su "Connect" per completare la connessione</li>
+                    </ol>
+                </div>
+                <a href="https://tailscale.com/download" target="_blank" class="step-action">
+                    <span>⬇️</span>
+                    <span>Scarica Tailscale</span>
+                </a>
+            </div>
+
+            <!-- Step 2: BadgeEmpire App -->
+            <div class="step">
+                <div class="step-header">
+                    <div class="step-number-badge">2</div>
+                    <h3 class="step-title">Scarica BadgeEmpire</h3>
+                </div>
+                <p class="step-description">
+                    BadgeEmpire è l'applicazione ufficiale del team dove gestirai tutte le tue attività, doppiaggi, ore di lavoro e molto altro.
+                </p>
+                <div class="sub-steps">
+                    <ol>
+                        <li><strong>Scarica l'applicazione</strong> dal link MediaFire qui sotto</li>
+                        <li><strong>Esegui il file</strong> BadgeEmpire.exe (Windows Defender potrebbe mostrare un avviso - è normale, l'app è sicura)</li>
+                        <li><strong>Installa l'applicazione</strong> seguendo la procedura guidata</li>
+                    </ol>
+                </div>
+                <a href="https://www.mediafire.com/file/bo6x9uleoy1wgyk/BadgeEmpire.exe/file" target="_blank" class="step-action">
+                    <span>📱</span>
+                    <span>Scarica BadgeEmpire</span>
+                </a>
+            </div>
+
+            <!-- Step 3: Registrazione -->
+            <div class="step">
+                <div class="step-header">
+                    <div class="step-number-badge">3</div>
+                    <h3 class="step-title">Registrati e Accedi</h3>
+                </div>
+                <p class="step-description">
+                    Crea il tuo account BadgeEmpire per accedere a tutte le funzionalità riservate ai membri del team.
+                </p>
+                <div class="sub-steps">
+                    <ol>
+                        <li><strong>Apri l'applicazione</strong> BadgeEmpire installata</li>
+                        <li><strong>Clicca su "Registrati"</strong> per creare un nuovo account</li>
+                        <li><strong>Inserisci i tuoi dati</strong>:
+                            <ul>
+                                <li>Nome completo</li>
+                                <li>Email valida</li>
+                                <li>Username unico</li>
+                                <li>Password sicura</li>
+                            </ul>
+                        </li>
+                        <li><strong>Conferma la registrazione</strong> tramite l'email che riceverai</li>
+                        <li><strong>Effettua il login</strong> con le credenziali appena create</li>
+                    </ol>
+                </div>
+            </div>
+
+            <!-- Step 4: Tutorial -->
+            <div class="step">
+                <div class="step-header">
+                    <div class="step-number-badge">4</div>
+                    <h3 class="step-title">Completa il Tutorial</h3>
+                </div>
+                <p class="step-description">
+                    Il tutorial interattivo ti guiderà attraverso tutte le funzionalità dell'app e le procedure del team. È obbligatorio per iniziare!
+                </p>
+                <div class="sub-steps">
+                    <ol>
+                        <li><strong>Avvia il tutorial</strong> che partirà automaticamente al primo accesso</li>
+                        <li><strong>Esplora le sezioni</strong>:
+                            <ul>
+                                <li>Gestione ore di lavoro</li>
+                                <li>Bacheca personaggi</li>
+                                <li>Calendario eventi</li>
+                                <li>Prenotazioni doppiaggio</li>
+                                <li>Chat e notifiche</li>
+                            </ul>
+                        </li>
+                        <li><strong>Completa i mini-task</strong> per familiarizzare con l'interfaccia</li>
+                        <li><strong>Supera il quiz finale</strong> per ottenere la certificazione Stagista</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+
+        <!-- Success Box -->
+        <div class="success-box">
+            <h3>🎉 Benvenuto nel Team!</h3>
+            <p>
+                Congratulazioni! Ora sei ufficialmente un membro Stagista di Empire Studios. 
+                Inizia a esplorare l'app, presentati nel canale Discord, e preparati per la tua prima sessione di doppiaggio!
+            </p>
+            <div class="next-steps-list">
+                <h4>I tuoi primi passi:</h4>
+                <ul>
+                    <li>Completa il tuo profilo nell'app</li>
+                    <li>Presentati nel canale #benvenuti su Discord</li>
+                    <li>Controlla il calendario per le prossime riunioni</li>
+                    <li>Leggi le regole del team</li>
+                    <li>Attendi l'assegnazione del tuo primo personaggio</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

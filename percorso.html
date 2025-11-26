@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Empire Studios - Percorso di Crescita</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #5cb85c;
+            --primary-dark: #4caf50;
+            --bg-dark: #0a0a0a;
+            --bg-medium: #1a1a1a;
+            --bg-light: #2a2a2a;
+            --text-white: #ffffff;
+            --text-gray: #e0e0e0;
+            --text-muted: #7f8c8d;
+            --cyan: #00FFFF;
+            --blue-light: #87CEEB;
+            --blue: #ADD8E6;
+            --gold: #FFD700;
+            --green-light: #90EE90;
+            --orange: #FFA500;
+            --red: #FF0000;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Arial', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-gray);
+            line-height: 1.6;
+        }
+
+        /* ==================== NAVBAR ==================== */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 9999;
+            border-bottom: 2px solid var(--primary);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            transition: transform 0.3s;
+        }
+
+        .logo-container:hover {
+            transform: scale(1.05);
+        }
+
+        .logo-img {
+            width: 45px;
+            height: 45px;
+            object-fit: contain;
+            filter: drop-shadow(0 0 10px rgba(92, 184, 92, 0.4));
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 0;
+            list-style: none;
+            background: rgba(42, 42, 42, 0.3);
+            border-radius: 50px;
+            padding: 0.5rem;
+        }
+
+        .nav-links a {
+            color: var(--text-gray);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            padding: 0.7rem 1.5rem;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            display: block;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            box-shadow: 0 4px 15px rgba(92, 184, 92, 0.3);
+        }
+
+        /* ==================== CONTENUTO ==================== */
+        .page-content {
+            padding: 8rem 5% 4rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .page-title {
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--text-white);
+            margin-bottom: 1rem;
+        }
+
+        .page-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        .section-divider {
+            width: 60px;
+            height: 4px;
+            background: var(--primary);
+            margin: 1.5rem auto;
+            border-radius: 2px;
+        }
+
+        /* Intro Box */
+        .intro-percorso {
+            background: var(--bg-medium);
+            border: 2px solid var(--primary);
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin-bottom: 4rem;
+            text-align: center;
+        }
+
+        .intro-percorso h3 {
+            color: var(--primary);
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .intro-percorso p {
+            color: var(--text-gray);
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        /* Percorso Ruoli */
+        .roles-path {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 3rem 0;
+        }
+
+        .path-connector {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(180deg, 
+                var(--cyan) 0%, 
+                var(--cyan) 20%,
+                var(--blue-light) 20%,
+                var(--blue-light) 40%,
+                var(--blue) 40%,
+                var(--blue) 60%,
+                var(--gold) 60%,
+                var(--gold) 80%,
+                var(--green-light) 80%,
+                var(--green-light) 100%
+            );
+            transform: translateX(-50%);
+            z-index: 1;
+        }
+
+        .role-item {
+            position: relative;
+            margin-bottom: 4rem;
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .role-item:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .role-number {
+            min-width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: white;
+            box-shadow: 0 6px 20px rgba(92, 184, 92, 0.4);
+            z-index: 10;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .role-card {
+            flex: 1;
+            background: var(--bg-medium);
+            border-radius: 20px;
+            padding: 2rem;
+            border: 3px solid;
+            transition: all 0.3s ease;
+            max-width: 400px;
+        }
+
+        .role-item:nth-child(odd) .role-card {
+            margin-right: auto;
+            margin-left: 0;
+        }
+
+        .role-item:nth-child(even) .role-card {
+            margin-left: auto;
+            margin-right: 0;
+        }
+
+        .role-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 20px 50px rgba(92, 184, 92, 0.3);
+        }
+
+        .role-card.stagista { border-color: var(--cyan); }
+        .role-card.trial { border-color: var(--blue-light); }
+        .role-card.collaboratore { border-color: var(--blue); }
+        .role-card.regista { border-color: var(--gold); }
+        .role-card.empire { border-color: var(--green-light); }
+
+        .role-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .role-badge {
+            font-size: 2.5rem;
+        }
+
+        .role-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .role-card.stagista .role-title { color: var(--cyan); }
+        .role-card.trial .role-title { color: var(--blue-light); }
+        .role-card.collaboratore .role-title { color: var(--blue); }
+        .role-card.regista .role-title { color: var(--gold); }
+        .role-card.empire .role-title { color: var(--green-light); }
+
+        .role-duration {
+            display: inline-block;
+            background: rgba(92, 184, 92, 0.15);
+            color: var(--primary);
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .role-description {
+            color: var(--text-gray);
+            line-height: 1.7;
+            margin-bottom: 1rem;
+        }
+
+        .role-requirements {
+            background: var(--bg-dark);
+            border-radius: 12px;
+            padding: 1rem;
+            margin-top: 1rem;
+        }
+
+        .role-requirements h4 {
+            color: var(--primary);
+            font-size: 1rem;
+            margin-bottom: 0.6rem;
+            font-weight: 600;
+        }
+
+        .role-requirements ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .role-requirements li {
+            color: var(--text-gray);
+            padding: 0.3rem 0;
+            font-size: 0.95rem;
+        }
+
+        .role-requirements li::before {
+            content: '✓ ';
+            color: var(--primary);
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+
+        /* Ruoli Speciali */
+        .special-roles-divider {
+            text-align: center;
+            margin: 5rem 0 3rem;
+            position: relative;
+        }
+
+        .special-roles-divider::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 50%;
+            height: 2px;
+            background: var(--bg-light);
+        }
+
+        .special-roles-divider span {
+            background: var(--bg-dark);
+            padding: 0 2rem;
+            color: var(--primary);
+            font-weight: 700;
+            font-size: 1.3rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .special-roles {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .special-role-card {
+            background: var(--bg-medium);
+            border-radius: 20px;
+            padding: 2.5rem;
+            text-align: center;
+            border: 3px solid;
+            transition: all 0.3s ease;
+        }
+
+        .special-role-card.coowner { border-color: var(--orange); }
+        .special-role-card.owner { border-color: var(--red); }
+
+        .special-role-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(255, 100, 0, 0.3);
+        }
+
+        .special-role-badge {
+            font-size: 4rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .special-role-title {
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .special-role-card.coowner .special-role-title { color: var(--orange); }
+        .special-role-card.owner .special-role-title { color: var(--red); }
+
+        .special-role-description {
+            color: var(--text-gray);
+            line-height: 1.7;
+            font-size: 1.05rem;
+        }
+
+        /* ==================== RESPONSIVE ==================== */
+        @media (max-width: 968px) {
+            .role-item {
+                flex-direction: column !important;
+            }
+
+            .role-item:nth-child(odd) .role-card,
+            .role-item:nth-child(even) .role-card {
+                margin: 0 auto;
+                margin-top: 80px;
+            }
+
+            .path-connector {
+                left: 30px;
+            }
+
+            .role-number {
+                left: 30px;
+                transform: translateX(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .page-title {
+                font-size: 2.2rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ==================== NAVBAR ==================== -->
+    <nav class="navbar">
+        <a href="index.html" class="logo-container">
+            <img src="logo.png" alt="Empire Studios Logo" class="logo-img">
+            <span class="logo-text">Empire Studios</span>
+        </a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="team.html">Il Team</a></li>
+            <li><a href="app.html">BadgeEmpire</a></li>
+            <li><a href="percorso.html" class="active">Percorso</a></li>
+            <li><a href="iniziare.html">Inizia</a></li>
+            <li><a href="regole.html">Regole</a></li>
+        </ul>
+    </nav>
+
+    <!-- ==================== CONTENUTO ==================== -->
+    <div class="page-content">
+        <div class="page-header">
+            <h1 class="page-title">🎖️ Il Percorso di Crescita</h1>
+            <div class="section-divider"></div>
+            <p class="page-subtitle">
+                Ogni membro segue un percorso di crescita professionale strutturato, con ruoli progressivi 
+                basati su competenze, impegno e risultati.
+            </p>
+        </div>
+
+        <div class="intro-percorso">
+            <h3>📈 Un Percorso Strutturato</h3>
+            <p>Dal tuo primo giorno come Stagista fino a diventare parte dell'Empire Team, ogni passaggio rappresenta una crescita nelle tue competenze e responsabilità. Impara, migliora e sali di livello!</p>
+        </div>
+
+        <div class="roles-path">
+            <div class="path-connector"></div>
+
+            <!-- Livello 1: Stagista -->
+            <div class="role-item">
+                <div class="role-number">1</div>
+                <div class="role-card stagista">
+                    <div class="role-header">
+                        <span class="role-badge">🌱</span>
+                        <h3 class="role-title">Stagista</h3>
+                    </div>
+                    <span class="role-duration">⏱️ Durata: 1-2 settimane</span>
+                    <p class="role-description">Il tuo punto di partenza! Imparerai le basi del doppiaggio, le tecniche di registrazione e le dinamiche del team.</p>
+                    <div class="role-requirements">
+                        <h4>Requisiti:</h4>
+                        <ul>
+                            <li>Completare il tutorial iniziale</li>
+                            <li>Partecipare alle riunioni di team</li>
+                            <li>Registrare almeno 3 doppiaggi di prova</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Livello 2: Trial -->
+            <div class="role-item">
+                <div class="role-number">2</div>
+                <div class="role-card trial">
+                    <div class="role-header">
+                        <span class="role-badge">🔍</span>
+                        <h3 class="role-title">Trial</h3>
+                    </div>
+                    <span class="role-duration">⏱️ Durata: 2-3 settimane</span>
+                    <p class="role-description">Fase di valutazione in cui dimostri le tue capacità. Lavori su personaggi secondari e sviluppi il tuo stile.</p>
+                    <div class="role-requirements">
+                        <h4>Requisiti per avanzare:</h4>
+                        <ul>
+                            <li>Completare 10+ doppiaggi di qualità</li>
+                            <li>Rispettare tutte le scadenze</li>
+                            <li>Ricevere valutazione positiva</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Livello 3: Collaboratore -->
+            <div class="role-item">
+                <div class="role-number">3</div>
+                <div class="role-card collaboratore">
+                    <div class="role-header">
+                        <span class="role-badge">⭐</span>
+                        <h3 class="role-title">Collaboratore</h3>
+                    </div>
+                    <span class="role-duration">⏱️ Durata: Indeterminata</span>
+                    <p class="role-description">Membro ufficiale del team! Accesso a personaggi principali, progetti importanti e maggiori responsabilità.</p>
+                    <div class="role-requirements">
+                        <h4>Benefici:</h4>
+                        <ul>
+                            <li>Personaggi protagonisti</li>
+                            <li>Accesso completo all'app</li>
+                            <li>Voto nelle decisioni di team</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Livello 4: Regista -->
+            <div class="role-item">
+                <div class="role-number">4</div>
+                <div class="role-card regista">
+                    <div class="role-header">
+                        <span class="role-badge">🎬</span>
+                        <h3 class="role-title">Regista</h3>
+                    </div>
+                    <span class="role-duration">⏱️ Per merito eccezionale</span>
+                    <p class="role-description">Leader creativo con esperienza comprovata. Coordini progetti, dirigi doppiatori e supervisioni la qualità.</p>
+                    <div class="role-requirements">
+                        <h4>Responsabilità:</h4>
+                        <ul>
+                            <li>Supervisione progetti</li>
+                            <li>Direzione artistica</li>
+                            <li>Formazione nuovi membri</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Livello 5: Empire Team -->
+            <div class="role-item">
+                <div class="role-number">5</div>
+                <div class="role-card empire">
+                    <div class="role-header">
+                        <span class="role-badge">👑</span>
+                        <h3 class="role-title">Empire Team</h3>
+                    </div>
+                    <span class="role-duration">⏱️ Vertice del percorso</span>
+                    <p class="role-description">L'élite di Empire Studios. Membri storici con contributi eccezionali e dedizione assoluta al progetto.</p>
+                    <div class="role-requirements">
+                        <h4>Privilegi:</h4>
+                        <ul>
+                            <li>Decisioni strategiche</li>
+                            <li>Progetti esclusivi</li>
+                            <li>Massima autonomia creativa</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- Ruoli Speciali -->
+        <div class="special-roles-divider">
+            <span>Ruoli di Leadership</span>
+        </div>
+
+        <div class="special-roles">
+            <div class="special-role-card coowner">
+                <span class="special-role-badge">🔥</span>
+                <h3 class="special-role-title">Co-Owner</h3>
+                <p class="special-role-description">Gestione operativa, coordinamento team e sviluppo strategico. Ruolo assegnato per fiducia e competenza comprovata.</p>
+            </div>
+
+            <div class="special-role-card owner">
+                <span class="special-role-badge">💎</span>
+                <h3 class="special-role-title">Owner</h3>
+                <p class="special-role-description">Fondatore e visionario di Empire Studios. Guida la direzione creativa e le decisioni strategiche del team.</p>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

@@ -163,25 +163,25 @@
             line-height: 1.8;
         }
 
-        /* Percorso Ruoli */
-        /* Impedisce alla linea verde di continuare oltre il percorso principale */
         .roles-path {
             position: relative;
             max-width: 900px;
             margin: 0 auto;
-            padding: 3rem 0;
-            overflow: hidden; /* Taglia la linea verde */
+            padding: 3rem 2rem;
+            overflow: visible; /* Permette alle card di espandersi */
         }
 
+        /* Nascondi solo la linea verde che va oltre */
         .path-connector {
             position: absolute;
             left: 50%;
             top: 0;
-            height: calc(100% - 5rem); /* Si ferma prima della fine */
+            height: calc(100% - 5rem);
             width: 4px;
             background: var(--primary);
             transform: translateX(-50%);
             z-index: 1;
+            overflow: hidden; /* Impedisce alla linea di continuare */
         }
 
         .role-item {

@@ -59,12 +59,16 @@
         }
 
         .logo-img {
-            width: 45px;
-            height: 45px;
-            object-fit: contain;
-            filter: drop-shadow(0 0 10px rgba(92, 184, 92, 0.4));
+            height: 60px; /* Aumenta questo valore per un logo più grande */
+            width: auto; /* Mantiene le proporzioni */
         }
 
+        /* Oppure se preferisci controllare la larghezza: */
+        .logo-img {
+            width: 80px; /* Regola secondo necessità */
+            height: auto;
+        }
+        
         .logo-text {
             font-size: 1.5rem;
             font-weight: 800;
